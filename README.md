@@ -9,7 +9,7 @@ Data points including Pokémon identification number, name, types, abilities, an
 
 The primary objective of this project was to demonstrate proficiency in [mention a key technology, e.g., React and API consumption, SQL database design, or Python data parsing] by building a robust and functional data retrieval system.
 
-🙏 Acknowledgements
+# Acknowledgements
 We extend our sincere gratitude to the following entities and resources that made this project possible:
 
 The Pokémon Company International / Nintendo / Game Freak: For the creation and enduring intellectual property of the Pokémon franchise and the Sinnoh region.
@@ -18,5 +18,5 @@ PokéAPI: For providing an accessible, open-source API for Pokémon data, which 
 
 The Open-Source Community: For the invaluable tools, libraries, and documentation that supported the development process.
 
-✍️ Author
+# Author
 This project was developed and is maintained by:
