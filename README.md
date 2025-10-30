@@ -16,9 +16,7 @@ We extend our sincere gratitude to the following entities and resources that mad
 
 The Pokémon Company International / Nintendo / Game Freak: For the creation and enduring intellectual property of the Pokémon franchise and the Sinnoh region.
 
-PokéAPI: For providing an accessible, open-source API for Pokémon data, which served as a fundamental data source for this project.
-
-The Open-Source Community: For the invaluable tools, libraries, and documentation that supported the development process.
+PurpleBooth, for this template.
 
 ## Author
 This project was developed and is maintained by: Me, Alejandro. 
