@@ -19,4 +19,4 @@ PokéAPI: For providing an accessible, open-source API for Pokémon data, which 
 The Open-Source Community: For the invaluable tools, libraries, and documentation that supported the development process.
 
 # Author
-This project was developed and is maintained by:
+This project was developed and is maintained by: Me, Alejandro. 
