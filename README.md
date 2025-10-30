@@ -1,4 +1,4 @@
-#Sinnoh's Pokedex
+# Sinnoh's Pokedex
 
 ## Description
 This project is a comprehensive digital index and database focusing on the Pokémon species native to the Sinnoh region, as featured in the Generation IV games (Pokémon Diamond, Pearl, and Platinum) and their remakes.
