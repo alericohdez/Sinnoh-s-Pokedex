@@ -20,3 +20,6 @@ PurpleBooth, for this template.
 
 ## Author
 This project was developed and is maintained by: Me, Alejandro. 
+
+## Inspiration
+https://dribbble.com/shots/25346001-Glassmorphism-Dashboard-UI-Design
