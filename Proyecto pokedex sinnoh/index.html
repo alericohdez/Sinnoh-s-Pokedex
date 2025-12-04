@@ -34,7 +34,7 @@
   </header>
 
   <main class="main-content">
-    <!-- Hero / Intro -->
+    
     <section class="hero-section" aria-labelledby="hero-title">
       <img src="images/pokemon-background-sinnoh.jpg" alt="Sinnoh region background" class="hero-background">
       <div class="hero-overlay">
@@ -100,30 +100,92 @@
     <section id="gallery-preview" class="gallery-preview">
       <h2>Galería</h2>
       <p>Visita la página de galería para ver la colección completa de imágenes de Sinnoh.</p>
-      <a class="button-primary" href="gallery.html">Open Gallery</a>
+      <a class="button-primary" href="gallery.html">Galería</a>
     </section>
 
 
     <section id="about-section" class="about-section">
       <h2>Acerca de</h2>
-      <p>Esta Pokédex es un proyecto educativo. Contiene información real sobre Pokémon originarios de Sinnoh y funciona
-        como práctica de HTML/CSS/JS.</p>
+      <p>Aplicación web construida con Vanilla JS para visualizar datos de la Pokédex de Sinnoh. 
+        Este proyecto sirve como demostración de fundamentos web, incluyendo iteración de arrays, 
+        renderizado condicional de elementos y diseño adaptable (Mobile First).</p>
     </section>
 
     <section class="extra-section">
       <h2>Investigación y Recursos</h2>
-      <p>La información de cada Pokémon se añade manualmente. Puedes apoyar el proyecto añadiendo imágenes con buena
-        licencia en la carpeta <code>images/</code>.</p>
+      <p>Los datos se almacenan localmente en estructuras JSON optimizadas. La información combina 
+        la nostalgia de la Generación 4 con las mecánicas competitivas actuales (Gen 9), 
+        incorporando habilidades actualizadas.</p>
     </section>
   </main>
+
+  
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="modal">
+    <div class="modal-content detail-modal-content">
+      <span class="modal-close">&times;</span>
+      <div class="detail-content">
+        <img id="detail-image" class="detail-image" src="" alt="">
+        <h2 id="detail-name"></h2>
+        <p class="detail-number" id="detail-number"></p>
+        <p class="detail-type" id="detail-type"></p>
+        <div class="detail-abilities">
+          <h4>Habilidades:</h4>
+          <ul id="detail-abilities-list" class="abilities-list"></ul>
+        </div>
+        <div class="detail-buttons">
+          <button id="detail-edit-btn" class="submit-button">Editar</button>
+          <button id="detail-close-btn" class="modal-cancel-button">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Editar Pokémon</h3>
+      <form id="edit-form" class="pokemon-form" autocomplete="off" novalidate>
+        <label for="edit-name-input">Nombre</label>
+        <input id="edit-name-input" name="name" type="text" placeholder="Piplup" required>
+
+        <label for="edit-number-input">Número de la pokédex</label>
+        <input id="edit-number-input" name="number" type="number" min="1" required>
+
+        <label for="edit-type-input">Tipo</label>
+        <select id="edit-type-input" name="type" required>
+          <option value="">Selecciona el tipo</option>
+          <option value="agua">Agua</option>
+          <option value="planta">Planta</option>
+          <option value="fuego">Fuego</option>
+          <option value="eléctrico">Eléctrico</option>
+          <option value="psíquico">Psíquico</option>
+          <option value="roca">Roca</option>
+          <option value="fantasma">Fantasma</option>
+          <option value="dragón">Dragón</option>
+          <option value="normal">Normal</option>
+        </select>
+
+        <label for="edit-image-input">URL de la imágen</label>
+        <input id="edit-image-input" name="image" type="url" placeholder="https://..." required>
+
+        <div class="modal-buttons">
+          <button type="submit" class="submit-button">Guardar cambios</button>
+          <button type="button" class="modal-cancel-button">Cancelar</button>
+        </div>
+        <div id="edit-errors" class="form-errors" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
 
   <footer class="site-footer" role="contentinfo">
     <div class="footer-left">
       <p>© 2025 Pokédex de Sinnoh | Desarrollado por Alejandro</p>
     </div>
     <div class="footer-right">
-      <a href="#" class="footer-link">Contact</a>
-      <a href="#" class="footer-link">GitHub</a>
+      <a href="#" class="footer-link">Contáctanos</a>
+      <a href="https://github.com/alericohdez" class="footer-link">GitHub</a>
     </div>
   </footer>
 
