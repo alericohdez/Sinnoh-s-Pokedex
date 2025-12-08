@@ -10,73 +10,100 @@ const POKEDEX_LIST_ID = 'pokedex-list';
 const POKEMON_CARD_SELECTOR = '.pokemon-card';
 
 (function () {
-  const menuButton = document.querySelector(MENU_BUTTON_SELECTOR);
-  const siteNav = document.querySelector(SITE_NAV_SELECTOR);
+  const MENU_BUTTON_EL = document.querySelector(MENU_BUTTON_SELECTOR);
+  const SITE_NAV_EL = document.querySelector(SITE_NAV_SELECTOR);
 
-  if (!menuButton || !siteNav) return;
+  if (!MENU_BUTTON_EL || !SITE_NAV_EL) return;
 
-  // Inicializar aria-expanded para accesibilidad
-  menuButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
+  MENU_BUTTON_EL.setAttribute(ARIA_EXPANDED_ATTR, 'false');
 
-  // Toggle principal del botón
-  menuButton.addEventListener('click', (e) => {
+  MENU_BUTTON_EL.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = siteNav.classList.toggle(MENU_OPEN_CLASS);
-    menuButton.setAttribute(ARIA_EXPANDED_ATTR, isOpen ? 'true' : 'false');
+    const IS_OPEN = SITE_NAV_EL.classList.toggle(MENU_OPEN_CLASS);
+    MENU_BUTTON_EL.setAttribute(ARIA_EXPANDED_ATTR, IS_OPEN ? 'true' : 'false');
   });
 
-  // Cerrar menú al hacer clic en cualquiera de los enlaces (útil en móvil)
-  siteNav.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.tagName === 'A') {
-      siteNav.classList.remove(MENU_OPEN_CLASS);
-      menuButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
+  SITE_NAV_EL.addEventListener('click', (e) => {
+    const TARGET = e.target;
+    if (TARGET.tagName === 'A') {
+      SITE_NAV_EL.classList.remove(MENU_OPEN_CLASS);
+      MENU_BUTTON_EL.setAttribute(ARIA_EXPANDED_ATTR, 'false');
     }
   });
 
-  // Cerrar menú al hacer clic fuera del nav o del botón
   document.addEventListener('click', (e) => {
-    if (!siteNav.classList.contains(MENU_OPEN_CLASS)) return;
-    const clickInsideNav = siteNav.contains(e.target) || menuButton.contains(e.target);
-    if (!clickInsideNav) {
-      siteNav.classList.remove(MENU_OPEN_CLASS);
-      menuButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
+    if (!SITE_NAV_EL.classList.contains(MENU_OPEN_CLASS)) return;
+    const CLICK_INSIDE_NAV = SITE_NAV_EL.contains(e.target) || MENU_BUTTON_EL.contains(e.target);
+    if (!CLICK_INSIDE_NAV) {
+      SITE_NAV_EL.classList.remove(MENU_OPEN_CLASS);
+      MENU_BUTTON_EL.setAttribute(ARIA_EXPANDED_ATTR, 'false');
     }
   });
 
-  // Cerrar con Esc
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && siteNav.classList.contains(MENU_OPEN_CLASS)) {
-      siteNav.classList.remove(MENU_OPEN_CLASS);
-      menuButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
-      menuButton.focus();
+    if (e.key === 'Escape' && SITE_NAV_EL.classList.contains(MENU_OPEN_CLASS)) {
+      SITE_NAV_EL.classList.remove(MENU_OPEN_CLASS);
+      MENU_BUTTON_EL.setAttribute(ARIA_EXPANDED_ATTR, 'false');
+      MENU_BUTTON_EL.focus();
     }
   });
 })();
 
 
 (function () {
-  const searchButton = document.getElementById(SEARCH_BUTTON_ID);
-  const searchInput = document.getElementById(SEARCH_INPUT_ID);
+  const SEARCH_BUTTON_EL = document.getElementById(SEARCH_BUTTON_ID);
+  const SEARCH_INPUT_EL = document.getElementById(SEARCH_INPUT_ID);
 
-  function performSearch() {
-    const query = (searchInput.value || '').trim().toLowerCase();
-    const list = document.getElementById(POKEDEX_LIST_ID);
-    if (!list) return;
+  function PERFORM_SEARCH() {
+    const RAW_QUERY = (SEARCH_INPUT_EL.value || '').trim().toLowerCase();
+    const NUM_QUERY = RAW_QUERY.replace(/^#/, '').trim();
+    const LIST_EL = document.getElementById(POKEDEX_LIST_ID);
+    if (!LIST_EL) return;
 
-    const cards = list.querySelectorAll(POKEMON_CARD_SELECTOR);
-    cards.forEach(card => {
-      const name = card.dataset.name.toLowerCase();
-      const number = String(card.dataset.number);
-      const match = name.includes(query) || number.includes(query);
-      card.style.display = match ? '' : 'none';
+    const CARDS = LIST_EL.querySelectorAll(POKEMON_CARD_SELECTOR);
+    console.log('[PERFORM_SEARCH] query=', RAW_QUERY, 'cardsFound=', CARDS.length);
+    CARDS.forEach(card => {
+      const NAME = (card.dataset.name || '').toLowerCase();
+      const NUMBER = String(card.dataset.number || '');
+      const MATCH = RAW_QUERY === '' ? true : (NAME.includes(RAW_QUERY) || NUMBER.includes(NUM_QUERY));
+      card.style.display = MATCH ? '' : 'none';
     });
+
+    if (RAW_QUERY.length > 0) {
+      const VISIBLE = Array.from(CARDS).filter(c => c.style.display !== 'none');
+      console.log('[PERFORM_SEARCH] visible=', VISIBLE.length);
+      if (VISIBLE.length === 1) {
+        const MATCH_CARD = VISIBLE[0];
+        try {
+          MATCH_CARD.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (e) {
+        }
+        const IDX = MATCH_CARD.dataset.index;
+        setTimeout(() => {
+          console.log('[PERFORM_SEARCH] attempting open for index=', IDX, 'openDetailModalPresent=', typeof window.openDetailModal === 'function');
+          if (IDX !== undefined && IDX !== null && typeof window.getStoredList === 'function' && typeof window.openDetailModal === 'function') {
+            const LIST = window.getStoredList();
+            const POKEMON = LIST && LIST[Number(IDX)];
+            if (POKEMON) {
+              try {
+                window.openDetailModal(POKEMON, Number(IDX));
+                return;
+              } catch (err) {
+                console.warn('[PERFORM_SEARCH] direct openDetailModal call failed', err);
+              }
+            }
+          }
+          MATCH_CARD.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+        }, 120);
+      }
+    }
   }
 
-  if (searchButton && searchInput) {
-    searchButton.addEventListener('click', performSearch);
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') performSearch();
+  if (SEARCH_BUTTON_EL && SEARCH_INPUT_EL) {
+    SEARCH_BUTTON_EL.addEventListener('click', PERFORM_SEARCH);
+    SEARCH_INPUT_EL.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') PERFORM_SEARCH();
     });
   }
 })();
+

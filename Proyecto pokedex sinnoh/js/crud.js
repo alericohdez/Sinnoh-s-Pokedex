@@ -684,7 +684,6 @@ function loadInitialData() {
   }
 ];
   
-  // Add abilities to all Pokémon
   return defaultData.map(pokemon => ({
     ...pokemon,
     abilities: getDefaultAbilities(pokemon.name)
@@ -707,7 +706,6 @@ function saveStoredList(list) {
 
 function getDefaultAbilities(pokemonName) {
   const abilities = {
-    // #001 - #009: Iniciales
     'Turtwig': ['Espesura', 'Caparazón'],
     'Grotle': ['Espesura', 'Caparazón'],
     'Torterra': ['Espesura', 'Caparazón'],
@@ -716,188 +714,150 @@ function getDefaultAbilities(pokemonName) {
     'Infernape': ['Mar llamas', 'Puño férreo'],
     'Piplup': ['Torrente', 'Competitivo'],
     'Prinplup': ['Torrente', 'Competitivo'],
-    'Empoleon': ['Torrente', 'Tenacidad'], // Actualizado Gen 9 (antes Competitivo)
+    'Empoleon': ['Torrente', 'Tenacidad'],
 
-    // #010 - #014: Aves y Roedores
     'Starly': ['Vista lince', 'Audaz'],
     'Staravia': ['Intimidación', 'Audaz'],
     'Staraptor': ['Intimidación', 'Audaz'],
     'Bidoof': ['Simple', 'Ignorante', 'Veleta'],
     'Bibarel': ['Simple', 'Ignorante', 'Veleta'],
 
-    // #015 - #019: Bichos tempranos y Shinx
     'Kricketot': ['Muda', 'Fuga'],
     'Kricketune': ['Enjambre', 'Experto'],
     'Shinx': ['Rivalidad', 'Intimidación', 'Agallas'],
     'Luxio': ['Rivalidad', 'Intimidación', 'Agallas'],
     'Luxray': ['Rivalidad', 'Intimidación', 'Agallas'],
 
-    // #020 - #022: Línea Abra
     'Abra': ['Sincronía', 'Foco interno', 'Muro mágico'],
     'Kadabra': ['Sincronía', 'Foco interno', 'Muro mágico'],
     'Alakazam': ['Sincronía', 'Foco interno', 'Muro mágico'],
 
-    // #023 - #024: Magikarp
     'Magikarp': ['Nado rápido', 'Cobardía'],
     'Gyarados': ['Intimidación', 'Autoestima'],
 
-    // #025 - #027: Línea Budew
     'Budew': ['Cura natural', 'Punto tóxico', 'Defensa hoja'],
     'Roselia': ['Cura natural', 'Punto tóxico', 'Defensa hoja'],
     'Roserade': ['Cura natural', 'Punto tóxico', 'Experto'],
 
-    // #028 - #030: Línea Zubat
     'Zubat': ['Foco interno', 'Allanamiento'],
     'Golbat': ['Foco interno', 'Allanamiento'],
     'Crobat': ['Foco interno', 'Allanamiento'],
 
-    // #031 - #035: Geodude y Onix
     'Geodude': ['Cabeza roca', 'Robustez', 'Velo arena'],
     'Graveler': ['Cabeza roca', 'Robustez', 'Velo arena'],
     'Golem': ['Cabeza roca', 'Robustez', 'Velo arena'],
     'Onix': ['Cabeza roca', 'Robustez', 'Armadura frágil'],
     'Steelix': ['Cabeza roca', 'Robustez', 'Potencia bruta'],
 
-    // #036 - #039: Fósiles
     'Cranidos': ['Rompemoldes', 'Potencia bruta'],
     'Rampardos': ['Rompemoldes', 'Potencia bruta'],
     'Shieldon': ['Robustez', 'Insonorizar'],
     'Bastiodon': ['Robustez', 'Insonorizar'],
 
-    // #040 - #042: Línea Machop
     'Machop': ['Agallas', 'Indefenso', 'Impasible'],
     'Machoke': ['Agallas', 'Indefenso', 'Impasible'],
     'Machamp': ['Agallas', 'Indefenso', 'Impasible'],
 
-    // #043 - #044: Psyduck
     'Psyduck': ['Humedad', 'Aclimatación', 'Nado rápido'],
     'Golduck': ['Humedad', 'Aclimatación', 'Nado rápido'],
 
-    // #045 - #050: Burmy y Combee
     'Burmy': ['Muda', 'Funda'],
-    'Wormadam': ['Anticipación', 'Funda'], // Aplica a las 3 capas
+    'Wormadam': ['Anticipación', 'Funda'],
     'Mothim': ['Enjambre', 'Cromolente'],
     'Combee': ['Recogida miel', 'Entusiasmo'],
     'Vespiquen': ['Presión', 'Nerviosismo'],
 
-    // #051 - #053: Pachirisu y Buizel
     'Pachirisu': ['Fuga', 'Recogida', 'Absorbe electricidad'],
     'Buizel': ['Nado rápido', 'Velo agua'],
     'Floatzel': ['Nado rápido', 'Velo agua'],
 
-    // #054 - #055: Cherubi
     'Cherubi': ['Clorofila'],
     'Cherrim': ['Don floral'],
 
-    // #056 - #057: Shellos
     'Shellos': ['Viscosidad', 'Colector', 'Poder arena'],
     'Gastrodon': ['Viscosidad', 'Colector', 'Poder arena'],
 
-    // #058 - #060: Heracross y Aipom
     'Heracross': ['Enjambre', 'Agallas', 'Autoestima'],
     'Aipom': ['Fuga', 'Recogida', 'Encadenado'],
     'Ambipom': ['Experto', 'Recogida', 'Encadenado'],
 
-    // #061 - #062: Drifloon
     'Drifloon': ['Resquicio', 'Liviano', 'Ímpetu ardiente'],
     'Drifblim': ['Resquicio', 'Liviano', 'Ímpetu ardiente'],
 
-    // #063 - #064: Buneary
     'Buneary': ['Fuga', 'Zoquete', 'Flexibilidad'],
     'Lopunny': ['Gran encanto', 'Zoquete', 'Flexibilidad'],
 
-    // #065 - #069: Fantasmas
     'Gastly': ['Levitación'],
     'Haunter': ['Levitación'],
-    'Gengar': ['Cuerpo maldito'], // Cambio permanente desde Gen 7
+    'Gengar': ['Cuerpo maldito'],
     'Misdreavus': ['Levitación'],
     'Mismagius': ['Levitación'],
 
-    // #070 - #073: Murkrow y Glameow
     'Murkrow': ['Insomnio', 'Afortunado', 'Bromista'],
     'Honchkrow': ['Insomnio', 'Afortunado', 'Autoestima'],
     'Glameow': ['Flexibilidad', 'Ritmo propio', 'Vista lince'],
     'Purugly': ['Sebo', 'Ritmo propio', 'Competitivo'],
 
-    // #074 - #077: Peces
     'Goldeen': ['Nado rápido', 'Velo agua', 'Pararrayos'],
     'Seaking': ['Nado rápido', 'Velo agua', 'Pararrayos'],
     'Barboach': ['Despiste', 'Anticipación', 'Hidratación'],
     'Whiscash': ['Despiste', 'Anticipación', 'Hidratación'],
 
-    // #078 - #079: Campanas
     'Chingling': ['Levitación'],
     'Chimecho': ['Levitación'],
 
-    // #080 - #081: Stunky
     'Stunky': ['Hedor', 'Resquicio', 'Vista lince'],
     'Skuntank': ['Hedor', 'Resquicio', 'Vista lince'],
 
-    // #082 - #083: Meditite
     'Meditite': ['Energía pura', 'Telepatía'],
     'Medicham': ['Energía pura', 'Telepatía'],
 
-    // #084 - #085: Bronzor
     'Bronzor': ['Levitación', 'Ignífugo', 'Metal pesado'],
     'Bronzong': ['Levitación', 'Ignífugo', 'Metal pesado'],
 
-    // #086 - #087: Ponyta
     'Ponyta': ['Fuga', 'Absorbe fuego', 'Cuerpo llama'],
     'Rapidash': ['Fuga', 'Absorbe fuego', 'Cuerpo llama'],
 
-    // #088 - #091: Bonsly y Mr. Mime
     'Bonsly': ['Cabeza roca', 'Robustez', 'Cobardía'],
     'Sudowoodo': ['Cabeza roca', 'Robustez', 'Cobardía'],
     'Mime Jr.': ['Insonorizar', 'Filtro', 'Experto'],
     'Mr. Mime': ['Insonorizar', 'Filtro', 'Experto'],
 
-    // #092 - #094: Línea Chansey
     'Happiny': ['Cura natural', 'Dicha', 'Compasión'],
     'Chansey': ['Cura natural', 'Dicha', 'Alma cura'],
     'Blissey': ['Cura natural', 'Dicha', 'Alma cura'],
 
-    // #095 - #097: Línea Clefairy
     'Cleffa': ['Gran encanto', 'Muro mágico', 'Compasión'],
     'Clefairy': ['Gran encanto', 'Muro mágico', 'Compasión'],
     'Clefable': ['Gran encanto', 'Muro mágico', 'Ignorante'],
 
-    // #098: Chatot
     'Chatot': ['Vista lince', 'Tumbos', 'Sacapecho'],
 
-    // #099 - #101: Línea Pikachu
     'Pichu': ['Electricidad estática', 'Pararrayos'],
     'Pikachu': ['Electricidad estática', 'Pararrayos'],
     'Raichu': ['Electricidad estática', 'Pararrayos'],
 
-    // #102 - #103: Hoothoot
     'Hoothoot': ['Insomnio', 'Vista lince', 'Cromolente'],
     'Noctowl': ['Insomnio', 'Vista lince', 'Cromolente'],
 
-    // #104: Spiritomb
     'Spiritomb': ['Presión', 'Allanamiento'],
 
-    // #105 - #107: Línea Garchomp
     'Gible': ['Velo arena', 'Piel tosca'],
     'Gabite': ['Velo arena', 'Piel tosca'],
     'Garchomp': ['Velo arena', 'Piel tosca'],
 
-    // #108 - #109: Snorlax
     'Munchlax': ['Recogida', 'Sebo', 'Glotonería'],
     'Snorlax': ['Inmunidad', 'Sebo', 'Glotonería'],
 
-    // #110: Unown
     'Unown': ['Levitación'],
 
-    // #111 - #112: Lucario
     'Riolu': ['Impasible', 'Foco interno', 'Bromista'],
     'Lucario': ['Impasible', 'Foco interno', 'Justiciero'],
 
-    // #113 - #114: Wooper
     'Wooper': ['Humedad', 'Absorbe agua', 'Ignorante'],
     'Quagsire': ['Humedad', 'Absorbe agua', 'Ignorante'],
 
-    // #115 - #116: Wingull
-    'Wingull': ['Vista lince', 'Hidratación', 'Cura lluvia'], // "Rain Dish" es Cura lluvia
+    'Wingull': ['Vista lince', 'Hidratación', 'Cura lluvia'],
     'Pelipper': ['Vista lince', 'Llovizna', 'Cura lluvia'],
 
     // #117: Girafarig
@@ -1089,7 +1049,6 @@ function ensureData() {
     list = loadInitialData();
     saveStoredList(list);
   } else {
-    // Migrate old data to include abilities if missing
     list = list.map(pokemon => {
       if (!pokemon.abilities) {
         pokemon.abilities = getDefaultAbilities(pokemon.name);
@@ -1116,6 +1075,7 @@ function renderList() {
 
     card.dataset.name = entry.name;
     card.dataset.number = entry.number;
+    card.dataset.index = index;
 
     const img = document.createElement('img');
     img.className = CARD_IMAGE_CLASS;
@@ -1178,7 +1138,6 @@ function renderList() {
     card.appendChild(img);
     card.appendChild(body);
 
-    // Add click event listener to open detail modal (but not on action buttons)
     card.addEventListener('click', (e) => {
       if (!e.target.closest('button')) {
         openDetailModal(entry, index);
@@ -1293,6 +1252,8 @@ function openEditModal(pokemon, index) {
   document.getElementById(EDIT_IMAGE_INPUT_ID).value = pokemon.image;
   
   editModal.style.display = 'block';
+  // Prevent background scrolling while modal is open
+  document.body.classList.add('modal-open');
 }
 
 function openDetailModal(pokemon, index) {
@@ -1320,6 +1281,8 @@ function openDetailModal(pokemon, index) {
   }
   
   detailModal.style.display = 'block';
+  // Prevent background scrolling while modal is open
+  document.body.classList.add('modal-open');
 }
 
 
@@ -1392,6 +1355,8 @@ function openDetailModal(pokemon, index) {
   function closeEditModal() {
     if (modal) modal.style.display = 'none';
     sessionStorage.removeItem(CURRENT_EDIT_ID);
+    // Restore background scrolling
+    document.body.classList.remove('modal-open');
   }
 
   
@@ -1475,6 +1440,8 @@ function openDetailModal(pokemon, index) {
   function closeDetailModal() {
     if (detailModal) detailModal.style.display = 'none';
     sessionStorage.removeItem(CURRENT_DETAIL_INDEX);
+    // Restore background scrolling
+    document.body.classList.remove('modal-open');
   }
 
   
